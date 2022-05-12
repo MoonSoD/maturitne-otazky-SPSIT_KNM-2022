@@ -1,7 +1,7 @@
 ---
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-11T19:29:06.209Z'
+modified: '2022-05-12T16:19:49.554Z'
 ---
 
 # PRO, DAA
@@ -51,6 +51,52 @@ modified: '2022-05-11T19:29:06.209Z'
         #toto je ďalší scope
         print("Ahoj svet!")
     ```
+- ### mikrokontrolér, mikropočítač, mikroprocesor, vývojový kit, IDE
+  - **mikrokontrolér** (MCU):
+    - integrovaný obvod obsahujúci mikropočítač
+    - na 1 čipe integrovaný procesor a pamäť, na svoju funkčnosť nepotrebuje ďalší obvod
+  - **mikroprocesor**:
+    - procesor v jednom integrovanom obvode
+    - pomocou softvéru vykonáva zložité elektronické obvody v podobe inštrukcií
+    - súčasťou väčšiny elektronických zariadení - PC, tlačiarne, rádiá, chladničky...
+  - **vývojový kit**:
+    - ucelená sada nástrojov na vývoj 
+    - *vývojové kity*: **softvérové** (SDK - softvérové knižnice), **hardvérové** (elektronické kity na vývojové dosky)
+  - **IDE** (Integrated Development Environment): 
+    - integrované vývojové prostredie
+    - softvér na vývoj aplikácií zložený z viacerých nástrojov v jednom GUI
+    - *typicky obsahuje*: editor zdrojového kódu, automatizáciu kompilácie/spúšťania kódu, debugger a spoluprácu s gitom
+    - *príklady:* Intellij IDEA, PyCharm, Visual Studio, Netbeans  
+
+- ### vlastnosti a periférie mikrokontroléra ATmega328 a Arduina
+  - **Arduino**:
+    - open-source vývojová doska pre zjednodušenie programovania s mikrokontrolérom ATmega328
+    - pre programátora poskytuje API rozhranie založené na jazyku C++
+    - v prípade Arduino UNO obsahuje 14 digitálnych a 6 analógových I/O pinov, USB rozhranie, 9V napájanie
+  - **ATmega328**:
+    - jednočipový mikrokontrolér od firmy Atmel
+    - obsahuje 8-bitový AVR mikroprocesor na architektúre RISC
+    - neobsahuje USB rozhranie 
+      | parameter | hodnota |
+      | --------- | ------- | 
+      | frekvencia | 20MHz |
+      | flash pamäť | 32KB |
+      | SRAM | 2KB |
+      | I/O piny | 23 |
+      | externé prerušenia | 2 |
+
+- ### registre DDRx, PORTx a PINx
+  - **DDRx** (Data Direction Register pre port x):
+    - nastavuje smer dátového toku pre I/O piny
+    - 1 bit inicializuje pin ako output, 0 bit ako input
+    - `DDRD = 0b11110000` -> piny 1-4 output, 5-8 ako input pre port D na mikrokontroléri
+  - **PORTx**: 
+    - nastavuje stav výstupu portu HIGH/LOW
+    - 1 bit nastaví HIGH, 0 nastaví LOW
+    - `PORTD = 0b01000000` -> pin 2 HIGH, ostatné LOW
+    - DDRx má prednosť pred PORTx, pin nastavený ako input nebude zmenený registrom PORTx
+  - **PINx**:
+    - číta stav pinu na porte
 
 - ### dátové typy a druhy komentárov v jazyku C/C++
   | typ | popis | deklarácia |
@@ -87,7 +133,7 @@ modified: '2022-05-11T19:29:06.209Z'
   | operátor | popis | príklad |
   | -------- | ----- | ------- |
   | += | pridanie hodnoty na pravej strane na ľavú stranu spolu s navrátením už pridanej hodnoty | <pre lang="C">int i = 5; <br>i += 2; // hodnota bude 7</pre> |
-  | ++ | zvýšenie hodnoty o 1 | <pre lang="C">int i = 5; <br>i++ //hodnota i bude 6</pre> |
+  | ++ | zvýšenie hodnoty o 1 s priradením  | <pre lang="C">int i = 5; <br>cout << i++ //vypíše 5 (vráti a potom zvýši hodnotu premennej) <br>cout << ++i //vypíše hodnotu 6 (zvýši hodnotu premennej a potom ju vráti)</pre> |
   | && | logický AND - a -> návratová hodnota bude pravdivá len pokiaľ podmienky na oboch stranách budú pravidivé | <pre lang="C">int i = 5; <br>int j = 8; <br>bool plati = i == 5 \&\& j == 8; //vrati hodnotu true</pre> |
   | \|\| | logický OR - alebo -> návratová hodnota bude pravdivá ak aspoň podmienka z 1 strany bude pravdivá | <pre lang="C">int i = 5; <br>int j = 8; <br>bool plati = i == 5 \|\| j == 6; //vrati hodnotu true</pre> |
   | = | priradenie hodnoty pravej strany na ľavú stranu | <pre lang="C">int i = 5;</pre> |
@@ -96,5 +142,6 @@ modified: '2022-05-11T19:29:06.209Z'
   | % | modulo -> vráti hodnotu zvyšku delenia ľavej strany pravou stranou | <pre lang="C">int i = 3 % 4; //vráti 3 |
   | & | bitový AND - vráti hodnotu bitového súčinu ľavej a pravej strany | <pre lang="C">int i = 5; <br>int j = 9; <br>int bitovy_sucin = i & j; //vrati hodnotu 1 |
   | \| | bitový OR -  vráti hodnotu bitového súčtu ľavej a pravej strany | <pre lang="C">int i = 5; <br>int j = 9; <br>int bitovy_sucet = i \| j; //vrati hodnotu 13 |
-
+  | >> | bitový posun | |
+  | ^ | XOR | |
 
