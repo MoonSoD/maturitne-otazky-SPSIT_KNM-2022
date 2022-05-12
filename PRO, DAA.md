@@ -1,7 +1,7 @@
 ---
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-12T16:19:49.554Z'
+modified: '2022-05-12T16:25:01.404Z'
 ---
 
 # PRO, DAA
@@ -133,7 +133,7 @@ modified: '2022-05-12T16:19:49.554Z'
   | operátor | popis | príklad |
   | -------- | ----- | ------- |
   | += | pridanie hodnoty na pravej strane na ľavú stranu spolu s navrátením už pridanej hodnoty | <pre lang="C">int i = 5; <br>i += 2; // hodnota bude 7</pre> |
-  | ++ | zvýšenie hodnoty o 1 s priradením  | <pre lang="C">int i = 5; <br>cout << i++ //vypíše 5 (vráti a potom zvýši hodnotu premennej) <br>cout << ++i //vypíše hodnotu 6 (zvýši hodnotu premennej a potom ju vráti)</pre> |
+  | ++ | zvýšenie hodnoty o 1 s priradením  | <pre lang="C">int i = 5; <br>cout << i++ //vypíše 5 (vráti a potom zvýši hodnotu premennej)</pre> |
   | && | logický AND - a -> návratová hodnota bude pravdivá len pokiaľ podmienky na oboch stranách budú pravidivé | <pre lang="C">int i = 5; <br>int j = 8; <br>bool plati = i == 5 \&\& j == 8; //vrati hodnotu true</pre> |
   | \|\| | logický OR - alebo -> návratová hodnota bude pravdivá ak aspoň podmienka z 1 strany bude pravdivá | <pre lang="C">int i = 5; <br>int j = 8; <br>bool plati = i == 5 \|\| j == 6; //vrati hodnotu true</pre> |
   | = | priradenie hodnoty pravej strany na ľavú stranu | <pre lang="C">int i = 5;</pre> |
