@@ -2,7 +2,7 @@
 tags: [Odborné maturity]
 title: SXT
 created: '2022-04-28T13:17:38.585Z'
-modified: '2022-05-10T16:34:13.216Z'
+modified: '2022-05-12T16:42:49.038Z'
 ---
 
 # SXT
@@ -68,14 +68,14 @@ modified: '2022-05-10T16:34:13.216Z'
       - obsahuje všetky lokálne a vzdialené FS
   
 - ### typy inštalácií operačného systému Oracle Solaris
-  1) *GUI inštalácia*
-  2) *CLI inštalácia*
+  - *GUI inštalácia*
+  - *CLI inštalácia*
       - iba text
       - text v okne
-  3) *Solaris Custom JumpStart* - pomocou používateľského profilu
-  4) *Štandardný Solaris upgrade* - predchádzajúce 3 typy inštalácia + zálohuje veci pri upgrade
-  5) *Solaris Live upgrade* - vytvoré sa kópia OS, upgraduje sa kópia, po reštarte sa nabootuje do upgraded verzie - pri problémoch nabootuje do pôvodnej verzie
-  6) *Solaris Flash Archive* (FA)
+  - *Solaris Custom JumpStart* - pomocou používateľského profilu
+  - *Štandardný Solaris upgrade* - predchádzajúce 3 typy inštalácia + zálohuje veci pri upgrade
+  - *Solaris Live upgrade* - vytvoré sa kópia OS, upgraduje sa kópia, po reštarte sa nabootuje do upgraded verzie - pri problémoch nabootuje do pôvodnej verzie
+  - *Solaris Flash Archive* (FA)
       - bežná - referenčný systém, vytvoríme z neho Flash Archive (image), inštalujeme z FA použitím JumpStart profilu
       - Solaris WAN boot - FA umiestnený na serveri vo WAN sieti
 

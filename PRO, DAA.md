@@ -1,7 +1,8 @@
 ---
+attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-12T16:25:01.404Z'
+modified: '2022-05-15T17:31:57.623Z'
 ---
 
 # PRO, DAA
@@ -98,6 +99,134 @@ modified: '2022-05-12T16:25:01.404Z'
   - **PINx**:
     - číta stav pinu na porte
 
+- ### periféria externé prerušenie v MCU ATmega328
+  - reaguje na externé podnety zatiaľ čo beží hlavná aplikácia bez prerušenia cyklu
+  - podnet môže byť napríklad forma signálu zmeny hodnoty na konkrétnom interrupt pine (HIGH -> LOW)
+  - *interrupt piny*: INT0, INT1
+  - ako odpoveď môžeme vyslať funkciu
+
+- ### periféria „pin change interrupt“ v MCU ATmega328
+  - oproti externému prerušeniu reaguje na podnet na akomkoľvek pine
+  - čítanie prerušenia nastavujeme však na celý port a potom vyberáme konkrétny pin
+
+- ### periféria AD prevodník v MCU ATmega328
+  - prepája analógový a digitálny signál, dokáže ich vzájomne spracovať 
+  - analógový signál rozdelí na 1024 rôznych digitálnych hodnôť
+  - 10 bitový
+
+- ### ako generuje MCU kvázi analógový signál
+  - pomocou PWM (Pulse-Width Modulation) na jednej konštantnej frekvencii s rôznymi pulznými šírkami
+
+- ### komunikačné protokoly SPI, UART, TWI
+  - **SPI** (Serial Peripheral Interface):
+    - sériové rozhranie na komunikáciu medzi zariadeniami v nízkej vzdialenosti
+    - princíp ***Master*** > *Slave*
+    - master komunikuje s viacerými slaves, ovláda ich, všetka komunikácia prechádza cez mastra
+  - **UART** (Universal Asynchronous Receiver/Transmitter):
+    - sériová komunikácia 2 zariadení cez RX (receive) a TX (transmit) piny
+    - RX príjma dáta z TX pripojeného zariadenia, TX odosiela dáta do RX
+  - **TWI**/I2C (Two-Wire Interface):
+    - sériová komunikácia cez piny SDA/SCL
+    - podporuje princíp ***Master*** > *Slave* a Multi-master 
+    - master začne komunikáciu, identifikuje pripojené slaves cez adresu a posiela im dáta
+
+- ### rozdiel medzi aritmetickým súčtom, logickým súčtom, aritmetickým súčinom a logickým súčinom dvoch binárnych čísel
+  - **artimetický súčet**:
+
+      | B | A | Y
+      | - | - | - 
+      | 0 | 0 | 0
+      | 0 | 1 | 1
+      | 1 | 0 | 1
+      | 1 | 1 | 1 0
+  - **logický súčet** (OR):
+
+      | B | A | Y 
+      | - | - | -
+      | 0 | 0 | 0
+      | 0 | 1 | 1
+      | 1 | 0 | 1
+      | 1 | 1 | 1
+  - **logický súčin** (AND):
+
+      | B | A | Y
+      | - | - | -
+      | 0 | 0 | 0
+      | 0 | 1 | 0
+      | 1 | 0 | 0
+      | 1 | 1 | 1
+
+- priame prevody medzi číselnými sústavami (bin., dec., hex.)
+  - *128* /dec/ -> bin
+    - 128 / 2 = 64, zvyšok 0;
+    - 64 / 2 = 32, zvyšok 0;
+    - 32 / 2 = 16, zvyšok 0;
+    - 16 / 2 = 8, zvyšok 0;
+    - 8 / 2 = 4, zvyšok 0;
+    - 4 / 2 = 2, zvyšok 0;
+    - 2 / 2 = 1, zvyšok 0;
+    - 1 / 2 = 0 (0.5), zvyšok 1
+    - 128 v binárnej sústave = `1000 0000`, číslo spisujeme od konca
+  - *1111 0000* /bin/ -> dec 
+    - 128 64 32 16 8 4 2 1
+    - 128*1 + 64*1 + 32*1 + 16*1 + 8*0 + 4*0 + 2*0 + 1*0 = `240`
+  - *94* /dec/ -> hex
+    - 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+    - 94 / 16 = 5, zvyšok 14 -> E;
+    - 5 / 16 = 0, zvyšok 5, -> 5;
+    - 94 v hexadecimálne sústave = `5E`, číslo spisujeme od konca, ale ak výsledok je 0, tak píšeme 5 pred E
+  - *E9A* /hex/ -> dec
+    - E = 14, 9 = 9, A = 10
+    - 14 * 16^2 + 9 * 16^1 + 10 * 16^0 = `3738`
+
+- nastavenie celého registra a len jedného bitu (do log.0 / log.1) v jazyku C
+  - *ADRESA = hodnota*
+    - **celý register**
+      - do log. 0 -> `DDRB = 0b00000000;` / `DDRB = 0;` / `DDRB = 0x0;` 
+      - do log. 1 -> `DDRB = 0b11111111;` / `DDRB = 255;` / `DDRB = 0xFF;`
+    - **jeden bit v registri**
+      - do log. 0 - `ADRESA &= ~(1<<POZICIA_BITU)` 
+        ```c
+        DDRB = 0b11111111;
+        DDRB &= ~(1<<2); //DDRB nadobudlo hodnotu 0b11011111
+        ```
+      - do log. 1 - `ADRESA |= 1<<POZICIA_BITU` 
+        ```c
+        DDRD = 0b00000000;
+        DDRD |= 1<<2; //DDRD nadobudlo hodnotu 0b00100000
+        ```
+
+- ### platforma Raspberry Pi
+  - séria jedno-doskových minipočítačov pôvodne určené pre vzdelávanie v informatike
+  - **hardvér**:
+    - *procesory*: od Broadcom
+    - *RAM*: od 256MB - 8GB (Pi 4B)
+    - *úložisko*: slot pre SD kartu
+    - *napájanie*: 5V; 3A 
+    - *porty*: USB, HDMI, Ethernet, 40 pinov (GND, 3.3V, 5V, GPIO, SPI, UART)
+    - Wi-Fi, Bluetooth 
+  - **softvér**:
+    - Raspberry Pi OS (pôvodne Raspbian) - operačný systém založený na linux distribúcii Debian
+
+- ### platforma ESP32 a Arduino
+  - **Arduino**:
+    - open-source vývojová doska pre zjednodušenie programovania s mikrokontrolérom ATmega328
+    - pre programátora poskytuje API rozhranie založené na jazyku C++
+    - poskytuje IDE pre vývoj (Arduino IDE v1, v2)
+    - v prípade Arduino UNO obsahuje 14 digitálnych a 6 analógových I/O pinov, USB rozhranie, 9V napájanie, AD prevodník, PWM piny, SPI, I2A, UART piny
+  - **ESP32**:
+    - vývojová doska od firmy Espressif s mikrokontrolérom a integrovaným Wi-Fi a Bluetooth modulom
+    - 34 GPIO pinov, SPI, I2C, UART, 12 bitový AD prevodník, PWM
+
+- ### platforma Lego mindstorms alebo micro:bit
+  - **Lego mindstorms**
+    - hardvérová a softvérová platform na vývoj programovateľných robotov z Lego blokov
+    - obsahuje hlavnú jednotu, vstupné senzory (infračervené, zvukové), rôzne stavebné bloky ako kolesá, rámy, pásy a periférie (displeje)
+    - verzie NXT, EV3
+    - poskytuje blokové vývojové prostredie pre jednoduché naprogramovanie robota, takisto je možné ich programovanie v jazyku C
+
+- ### 
+
 - ### dátové typy a druhy komentárov v jazyku C/C++
   | typ | popis | deklarácia |
   | --- | ----- | ---------- |
@@ -108,6 +237,49 @@ modified: '2022-05-12T16:25:01.404Z'
   | Double floating point | desatinné číslo, 15-16 miest | doube |
   | Valueless | bez návratovej hodnoty | void |
   | Wide character | znak, ktorý zaberá viac ako 1 byte | wchar_t
+
+  - komentáre: 
+    - jednoriadkové
+    ```c
+    int i = 5;
+    //toto je jednoriadkový komentár v kóde
+    printf("Hello world");
+    ```
+    - blokové 
+    ```c
+    int j = 10;
+    /* toto je komentár, 
+    ktorý môže siahať
+    do viacerých riadkov v kóde */
+    printf("Hello world!");
+    ```
+
+- ### polia a štruktúry v programovaní, ich inicializácia (syntax), ich vlastnosti, použitie, rozdiely v jazyku C/C++
+  - *polia* (arrays):
+    - pole je premenná, ktorá uchováva vyšší počet hodnôt rovnakého dátového typu
+    - pre deklaráciu musíme zadefinovať veľkosť poľa (maximálny počet hodnôt)
+    ```c
+    int znamky[5] = {1, 3, 5, 5, 4};
+    printf("Prva znamka: %d", znamky[0]); //vypíše "Prva znamka: 1"
+    ```
+  - *štruktúry* (structs):
+    - dátový typ zadefinovaný programátorom
+    ```c
+    struct Film {
+      int rok;
+      String meno;
+    }
+
+    int main() {
+      struct Film PrvyFilm; //deklaruje strukturu filmu PrvyFilm
+
+      PrvyFilm.rok = 1964; //nastavi rok daneho filmy
+      PrvyFilm.meno = "Goldfinger"; //nastavi meno daneho filmu
+
+      return 0;
+    }
+    ```
+
 
 - ### využitie konštánt, makier a knižníc v jazyku C/C++
   - *konštanta*
