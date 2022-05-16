@@ -2,7 +2,7 @@
 attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-16T15:45:06.211Z'
+modified: '2022-05-16T20:26:11.642Z'
 ---
 
 # PRO, DAA
@@ -899,4 +899,96 @@ modified: '2022-05-16T15:45:06.211Z'
   ON Znamky.id = Studenti.id
   LIMIT 50 OFFSET 20
   ```
+
+- ### skriptovacie jazyky (JavaScript, PHP, …)
+  - **JavaScript**:
+    - moderný, interpretovaný, nekompilovaný skriptovací jazyk určený pre klientské operácie 
+    - podporuje OOP, štruktúrované aj komponentové programovanie
+  - **PHP**:
+    - interpretovaný, nekompilovaný skriptovací jazyk určený pre serverové operácie (manipuláciu s údajmi, s databázou a s riadením prístupu k údajom)
+    - podporuje OOP a štruktúrované programovanie 
+  - **Python**:
+    - interpretovaný, nekompilovaný skriptovací jazyk určený pre široké využitie na strane servera, aj klienta
+    - podporuje OOP a štruktúrované programovanie
+
+- ### rozdiel medzi backend a frontend aplikáciou a jazyky využívané pre jednotlivé aplikácie
+  - frontend
+    - klientská časť webstránky/aplikácie, s ktorou má užívateľ nejakú priamu interakciu
+    - HTML, CSS, JavaScript
+  - backend
+    - serverová časť webstránky/aplikácie, ktorá zabezpečuje prácu s databázou a riadi prístup a správu údajov
+    - časť s ktorou užívateľ nemá priamu interakciu
+    - PHP, MySQL, Apache
+
+- ### vkladanie dát do databázy
+    ```sql 
+    INSERT INTO <TABULKA> (STLPEC1, STLPEC2, ...) VALUES (HODNOTA_STLPCA1, HODNOTA_STPLCA2) 
+    ```
+
+- ### výber dát z databázy
+    ```sql
+    SELECT STLPEC1, STLPEC2 FROM <TABULKA> WHERE STLPEC1="Ahoj"
+    ```
+
+- ### pojem SCRUM
+  - metodika agilného vývoja založená na práci v tíme
+  - je iteratívna - rozdelená na šprinty (časové úseky s cieľmi, napr. 30 dní)
+  - má 3 fázy:
+    1) Pre-game
+      - backlog (zadanie cieľov, ktoré chcem dosiahnúť)
+      - zadefinovanie SCRUM tímu - 5-10 členov, vedúci SCRUM master
+    2) Game (vývoj)
+      - vykonanie šprintov
+    3) Post-game
+      - testovanie výsledného produktu
+      - integrácia výsledného produktu
+  - vlastnosti:
+    - časté nové verzie
+    - doladenie programu počas vývoja
+    - zapojenie užívateľov do testu
+    - integrácia do obehu až na konci vývoja
+
+- ### verzovací systém a prácu s ním
+  - najpoužívanejší verzovací systém je Git
+  - zaznamenáva zmeny v projektových súboroch a môžeme ich jednoducho spravovať (vracať zmeny, staré verzie, ukladať úpravy)
+  - **postup** (príkazy sa vykonávajú v koreňovom adresári projektu):
+    1) Vytvoríme git repozitár v projekte `git init`
+    2) Pridáme súbory do repozitára `git add subor` alebo všetko `git add .`
+    - Môžeme pozrieť zmeny pred aplikovaním `git status`
+    3) Pridáme zmeny do repozitára (commit) `git commit -m "správa na identifikáciu zmien, napr. Pridanie nového tlačidla na odhlásenie účtu"`
+    - Môžeme odstrániť posledný commit `git reset HEAD~1`
+    - Ďalej môžeme pridať projekt na vzdialený repozitár (napr. GitHub, BitBucket, GitLab)
+      - `git remove add origin URL_K_VZDIALENEMU_REPOZITARU`
+      - publikujeme projekt do vzdialeného repozitára `git push -u origin master`
+      - pokiaľ niekto iný publikoval zmeny do vzdialeného repozitára, môžeme si ich stiahnúť `git pull origin`
+
+- ### návrhové vzory (design pattern)
+  - reprezentujú preferované konvencie používané skúsenými vývojármi OOP
+  - overené riešenia na bežné problémy, s ktorými sa môže vývojár stretnúť
+  - hlavné vzory:
+    - Kreačné vzory (Creational patterns): poskytujú mechanizmy na flexibilnú tvorbu objektov a recykláciu kódu
+    - Štruktúrové vzory (Structural patterns): vysvetľujú skladbu objektov a tried do väčších štruktúr, so zachovaním ich efektivity a flexibility
+    - Vzory správania (Behavioral patterns): zaoberajú sa algoritmami vzťahov medzi objektami
+
+- ### pojem framework a charakterizujte nejaké
+  - softvérová štruktúra, ktorá slúži pri programovaní, vývoji a organizácii iných softvérových projektov
+  - môže obsahovať podporné programy, knižnice API, návrhové vzory a odporúčané postupy pri vývoji
+  - **známe frameworky**:
+    - Laravel: PHP webový full-stack framework založený na MVC (Model-View-Controller) architektúre
+    - React: JavaScript webový frontend framework pre tvorbu užívateľský rozhraní
+
+- ### rozdiel medzi natívnou, hybridnou a webovou aplikáciou
+  - **natívna**:
+    - aplikácia navrhnutá pre jeden operačný systém
+  - **hybridná**:
+    - aplikácia navrhnutá pre viac operačný systémov (cross-platform... mobil, PC, web)
+  - **webová**:
+    - responzívna web stránka optimalizovaná pre webové prehliadače
+
+- ### naprogramujte v jazyku JavaScript jednoduchú aplikáciu bez využitia frameworku
+  - x
+
+- ### demonštrujte prácu s frameworkom
+  - x
+
 
