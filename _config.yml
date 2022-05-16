@@ -1,2 +1,3 @@
-theme: GFM
+theme: jekyll-theme-cayman
+markdown: GFM
 title: Random bullshit to trigger the page builder.
