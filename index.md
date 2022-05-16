@@ -1,11 +1,10 @@
----
-title: README
-created: '2022-05-11T17:48:13.229Z'
-modified: '2022-05-11T17:49:13.809Z'
----
-
-# README
 # Vypracovanie maturitných otázok pre SPŠIT 2022
+
+## Stránky
+
+- [SXT](https://moonsod.github.io/maturitne-otazky-SPSIT_KNM-2022/SXT)
+- [PRO, DAA](https://moonsod.github.io/maturitne-otazky-SPSIT_KNM-2022/PRO,%20DAA)
+
 ## Legenda
 
 - WS - Windows Server
