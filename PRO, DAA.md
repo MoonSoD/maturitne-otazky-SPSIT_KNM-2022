@@ -2,7 +2,7 @@
 attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-15T17:31:57.623Z'
+modified: '2022-05-16T12:00:53.963Z'
 ---
 
 # PRO, DAA
@@ -225,7 +225,69 @@ modified: '2022-05-15T17:31:57.623Z'
     - verzie NXT, EV3
     - poskytuje blokové vývojové prostredie pre jednoduché naprogramovanie robota, takisto je možné ich programovanie v jazyku C
 
-- ### 
+
+- ### polia a štruktúry v programovaní, ich inicializácia (syntax), ich vlastnosti, použitie, rozdiely v jazyku C/C++
+  - *polia* (arrays):
+    - pole je premenná, ktorá uchováva vyšší počet hodnôt rovnakého dátového typu
+    - pre deklaráciu musíme zadefinovať veľkosť poľa (maximálny počet hodnôt)
+    ```c++
+    int znamky[5] = {1, 3, 5, 5, 4};
+    printf("Prva znamka: %d", znamky[0]); //vypíše "Prva znamka: 1"
+    ```
+  - *štruktúry* (structs):
+    - dátový typ zadefinovaný programátorom
+    ```c++
+    struct Film {
+      int rok;
+      String meno;
+    }
+
+    int main() {
+      struct Film PrvyFilm; //deklaruje strukturu filmu PrvyFilm
+
+      PrvyFilm.rok = 1964; //nastavi rok daneho filmy
+      PrvyFilm.meno = "Goldfinger"; //nastavi meno daneho filmu
+
+      return 0;
+    }
+    ```
+    - v C++ oproti C môžeme vytvárať konštrutory, settery, gettery, funkcie, statické premenné, 
+
+- ### spôsob práce s jednorozmerným, viacrozmerným a textovým poľom v C/C++
+  - **jednorozmerné pole**:
+    ```c++
+    int znamky[5] = {4, 5, 1, 2, 3}; //vytvorenie pola s integermi
+    std::cout << znamky[0]; //vypise znamku "4"
+    std::cout << znamky[4]; //vypise znamku "3"
+
+    znamky[0] = 5; //prepise prvu hodnotu z pola na "5"
+    std::cout << znamky[0] //vypise znamku "5"
+    ```
+  - **viacrozmerné pole**:
+    - funguje na princípe matematickej matice
+    ```c++
+    //prvá hodnota je počet riadkov, druhá počet stĺpcov
+    int cisla[2][5] = { 
+      { 1, 2, 3, 4, 5 },
+      { 6, 7, 8, 9, 10 }
+    };
+    std::cout << znamky[1][0]; //vypíše číslo "6"
+    std::cout << znamky[0][4]; //vypíše číslo "5"
+
+    znamky[0][4] = 11; //zmení číslo 5 na číslo 11
+    std::cout << znamky[0][4] //vypíše číslo "11"
+    ```
+    - môže mať aj viac dimenzií ako 2
+  - **textové pole**:
+    - pole znakov -> v C stringy neexistujú, preto sa používa textové pole
+      ```c
+      char veta[] = "Ahoj svet"; //to isté ako nižšie
+      char veta[9] = {"A", "h", "o", "j", " ", "s", "v", "e", "t"}; 
+      ```
+    - v C++ máme už vyhradený dátový typ "string"
+      ```c++
+      string veta = "Ahoj svet";
+      ```
 
 - ### dátové typy a druhy komentárov v jazyku C/C++
   | typ | popis | deklarácia |
@@ -252,32 +314,6 @@ modified: '2022-05-15T17:31:57.623Z'
     ktorý môže siahať
     do viacerých riadkov v kóde */
     printf("Hello world!");
-    ```
-
-- ### polia a štruktúry v programovaní, ich inicializácia (syntax), ich vlastnosti, použitie, rozdiely v jazyku C/C++
-  - *polia* (arrays):
-    - pole je premenná, ktorá uchováva vyšší počet hodnôt rovnakého dátového typu
-    - pre deklaráciu musíme zadefinovať veľkosť poľa (maximálny počet hodnôt)
-    ```c
-    int znamky[5] = {1, 3, 5, 5, 4};
-    printf("Prva znamka: %d", znamky[0]); //vypíše "Prva znamka: 1"
-    ```
-  - *štruktúry* (structs):
-    - dátový typ zadefinovaný programátorom
-    ```c
-    struct Film {
-      int rok;
-      String meno;
-    }
-
-    int main() {
-      struct Film PrvyFilm; //deklaruje strukturu filmu PrvyFilm
-
-      PrvyFilm.rok = 1964; //nastavi rok daneho filmy
-      PrvyFilm.meno = "Goldfinger"; //nastavi meno daneho filmu
-
-      return 0;
-    }
     ```
 
 
@@ -316,4 +352,389 @@ modified: '2022-05-15T17:31:57.623Z'
   | \| | bitový OR -  vráti hodnotu bitového súčtu ľavej a pravej strany | <pre lang="C">int i = 5; <br>int j = 9; <br>int bitovy_sucet = i \| j; //vrati hodnotu 13 |
   | >> | bitový posun | |
   | ^ | XOR | |
+
+- ### vlastná funkcia, ktorá navráti...
+  - x
+
+- ### príklad na zloženú podmienku obsahujúcu operátory && a ||
+  ```c++
+  int i = 5; 
+  bool existuje = true;
+
+  if (i == 4 && existuje || i == 5) {
+    std::cout << "podmienka presla!";
+  }
+  ```
+  - ak `i = 4` a zároveň `existuje = true`, alebo ak `i = 5`, tak sa podmienka vykoná 
+  - pokiaľ `i = 6` a `existuje = false`, tak sa podmienka nevykoná
+
+- ### vetvenie v programovaní, druhy vetvení, ich všeobecné tvary (syntax), ich vlastnosti a rozdiely
+  - #### *if, else, else if*
+    - ak `znamka = 1`, tak sa vypíše text *"Skvela praca!"*, pokiaľ však toto naplatí, tak program prejde na ďalšiu vetvu, v našom prípade "**else if**": pokiaľ `znamka = 5`, tak sa vypíše *"Skoda, skus nabuduce..."*, ak neplatí ani jedno, tak sa v akomkoľvek prípade vykoná vetva "**else**", teda vypíše sa *"Dobry vykon."*
+      ```c
+      if (znamka == 1) {
+        std::cout << "Skvela praca!";
+      } else if (znamka == 5) {
+        std::cout << "Skoda, skus nabuduce...";
+      } else {
+        std::cout << "Dobry vykon.";
+      }
+        ```
+      
+- ### situácia, kedy je a kedy nie je nutné zapisovať blokové zložené zátvorky {}
+  - zložené zátvorky sú preferované na oddelenie častí programu, písať ich nemusíme v prípade:
+    - single statement podmienky a cykly (pokiaľ nasleduje len 1 inštrukcia):
+      ```c
+      if (plati) 
+        cout << "Ahoj svet!";
+      
+      for (int i = 0; i < 100; i++) 
+        cout << i;
+
+      while (plati) 
+        cout << "Ahoj svet!";
+      ```
+      **nemôžeme vynechať** (musíme už písať zátvorky v prípade viacerých inštrukcií):
+      ```c
+      if (plati) {
+        cout << "Ahoj svet!";
+        cout << "Vitaj!";
+      }
+      ```
+
+- ### cyklus v programovaní, druhy cyklov, ich všeobecné tvary (syntax), ich vlastnosti a rozdiely
+  - štruktúra v programovaní, ktorá opakuje zadefinované inštrukcie pokiaľ platí jej podmienka pred každým krokom
+  - *typy*:
+    - for loop:
+      - pokiaľ vieme koľko krát chcem cyklus spustiť
+      - `for (1; 2; 3) {}` 
+        - časť 1 sa vykoná 1x pred spustením cyklu
+        - časť 2 určuje podmienku, ktorá musí platiť pre spustenie cyklu
+        - časť 3 sa vykoná po každom prebehnutí cyklu
+        ```c
+        for (int i = 0; i < 100; i++) {
+          cout << i;
+        }
+        ```
+    - while loop:
+      - vykonáva sa pokiaľ podmienka platí
+      - `while (podmienka) {}`
+        ```c
+        while (i < 3) {
+          cout << "Hello";
+        }
+        ```
+    - do/while loop:
+      - pred začatím 1x vykoná kód v bloku
+      - ďalej sa vykonáva pokiaľ podmienka platí
+        ```c
+        do {
+          cout << "Hello";
+        } while (i > 3);
+        ```
+    
+- ### objektové programovanie 
+  - koncept programovania založený na objektoch (triedach), ktoré môžu obsahovať dáta a kód,
+  dáta vo forme vlastností (properties) a kód vo forme metód (methods)
+  - metódy môžu modifikovať vlastnosti daného objektu (triedy), vlastnosti dostávame z objektu this (predstavuje aktuálnu triedu)
+  - poskytuje dedičnosť (abstract class, interface), ochranu dát (private, protected, public vlastnosti)
+  - objekt sa inicializuje konštruktorom
+
+- ### deklarácia triedy a tvorba inštancie 
+  ```java
+  //deklarácia triedy s konštruktorom
+  class Student {
+    //vlastnosť
+    private int znamka;
+
+    //konštruktor
+    public Student(int dosiahnutaZnamka) {
+      this.znamka = dosiahnutaZnamka;
+    }
+
+    //metóda
+    void vypisatZnamku() {
+      System.out.println(this.znamka);
+    }
+  }
+
+  //vytvorenie inštancie triedy student s vyplneným konštruktorom s dosiahnutaZnamka = 2
+  Student student1 = new Student(2);
+  //použitie metódy vypisatZnamku, ktorá vypíše zadanú známku v konštruktore
+  student1.vypisatZnamku();
+  ```
+
+- ### pojmy: konštruktor, deštruktor, metóda, atribút, preťažovanie metód
+  - **konštruktor**:
+    - špeciálna metóda určená na vytvorenie (inicializáciu objektu), môžeme v ňom definovať počiatočné vlastnosti
+  - **deštruktor**:
+    - špeciálna metóda určená na zmazanie objektu z pamäte, môžeme v ňom zadať kód, ktorý chceme vykonať na zmazenie objektu
+  - **metóda**:
+    - blok kódu, ktorý sa po jeho zavolaní vykoná
+    - metódy sa deklarujú len ako funkcie v triedach
+  - **atribút**:
+    - vlastnosť objektu, ktorú môžeme modifikovať a chrániť pred prístupom z iného objektu
+  - **preťažovanie metód**:
+    - deklarácia viacerých metód pod rovnakým názvom, no s inými argumentami
+    ```java
+    //deklarácia triedy s konštruktorom
+    class Student {
+      //vlastnosť
+      private int znamka;
+
+      //konštruktor
+      public Student(int dosiahnutaZnamka) {
+        this.znamka = dosiahnutaZnamka;
+      }
+
+      //metóda
+      void vypisatZnamku() {
+        System.out.println(this.znamka);
+      }
+
+      //preťažená metóda
+      void vypisatZnamku(int znamka) {
+        System.out.println(znamka);
+      }
+    }
+
+    //vytvorenie inštancie triedy student s vyplneným konštruktorom s dosiahnutaZnamka = 2
+    Student student1 = new Student(2);
+    //použitie metódy vypisatZnamku, ktorá vypíše zadanú známku v konštruktore
+    student1.vypisatZnamku();
+    //použitie preťaženej metódy vypisaťZnamku, ktorá vypíše zadaná známku ako argument v metóde
+    student1.vypisatZnamku(3);
+    ```
+
+- ### garbage collection, zápis dát do zásobníka (stack) a haldy (heap)
+  - **garbage collection**:
+    - automatizovaná správa pamäte v programe
+    - GC sa snaží o uvoľnenie pamäte, ktorá bola vyhradená programom, no už sa nepoužíva /neexistuje k nej referencia/ (garbage/odpad)
+  - **zápis dát do zásobníka (stack) a haldy (heap)**:
+    - **stack**:
+      - vyhradenie do blokov pamäte, vyhradené miesto je automaticky známe už počas kompilácie a nemôžeme ho upraviť
+      - ukladá primitívne dátové typy (byte, short, int, long, float, double, boolean, char)
+    - **heap**:
+      - miesto v pamäti je vyhradené inštrukciami programu, môžeme ho alokovať a de-alokovať podľa nášho uváženia
+      - ukladá objekty (triedy <-> polia, stringy)
+
+- ### vytvorte triedu xyz, ktorá obsahuje atribúty abc. Hodnoty atribútov sa budú dať nastaviť cez bezparametrický konštruktor, konštruktor s parametrami a samostatné metódy pre každý parameter
+  - demonštrácia v jave
+    ```java
+      class Xyz {
+        int a;
+        String b;
+        double c;
+
+        //bezparemetrický konštruktor
+        public Xyz() {
+          this.a = 5;
+          this.b = "Ahoj";
+          this.c = 3.14;
+        }
+
+        //konštruktor s parametrami
+        public Xyz(int a, String b, double c) {
+          this.a = a;
+          this.b = b;
+          this.c = c;
+        }
+
+        public void printA() {
+          System.out.println(a);
+        }
+
+        public void printB() {
+          System.out.println(b);
+        }
+
+        public void printC() {
+          System.out.println(c);
+        }
+      }
+      ```
+
+- ### spúšťacia trieda, v ktorej využijete triedu xyz a jej metódy, štruktúra a činnosť vytvoreného programu
+  - demonštrácia v jave
+    ```java
+    //špúšťacia trieda
+    class Main {
+      //spúšťacia metóda
+      public static void main(String[] args) {
+        Xyz xyz1 = new Xyz(2, "Hey", 2.54);
+        xyz1.printA(); //vypíše 2
+        xyz2.printB(); //vypíše "Hey"
+        xyz3.printC(); //vypíše 2.54
+      }
+    }
+    ```
+
+- ### metóda potrebné pre ... a ošetrite stav, aby ...
+  - x
+
+- ### štruktúrované, objektovo orientované a komponentové programovanie, analyzujte a porovnajte tieto tri základné vetvy programovania
+  - **štruktúrované**:
+    - rozdeľujeme program to menších modulov pre lepšiu prehľadnosť a možnosť recyklácie častí kódu (modulov)
+    - podporované väčšinou moderných jazykov
+  - **objektovo orientované**:
+    - koncept programovania založený na objektoch (triedach), ktoré môžu obsahovať dáta a kód,
+  dáta vo forme vlastností (properties) a kód vo forme metód (methods)
+    - metódy môžu modifikovať vlastnosti daného objektu (triedy), vlastnosti dostávame z objektu this (predstavuje aktuálnu triedu)
+    - poskytuje dedičnosť (abstract class, interface), ochranu dát (private, protected, public vlastnosti)
+    - objekt sa inicializuje konštruktorom
+  - **komponentové**:
+    - rozdeľujeme program na individuálne funkčné komponenty, ktoré reprezentujú svoju úlohu
+    - možná recyklácia, dedičnosť 
+    - oproti objektovo orientovanému programovaniu nezáleží na usporiadaní funkcií a štruktúry programu
+
+- ### pojem dedičnosť, prístupové metódy
+  - **dedičnosť**:
+    - možnosť prebrať (zdediť) atribúty a metódy iného objektu
+    - dedičné objekty delíme na:
+      - parent (rodič) - hlavný objekt, ktorý môžeme zdediť
+      - child (dieťa) - objekt, ktorý dedí rodiča
+  - **prístupové metódy**:
+    - špecifikácia prístupu k atribútom a metódam (členom) objektu
+
+    | typ | popis |
+    | --- | ----- |
+    | public | verejný prístup k členom, aj z iného objektu 
+    | private | prístup k členom len z vnútra objektu
+    | protected | prístup k členom len z vnútra objektu a z objektov, ktoré ho dedia
+
+- ### nastavte prístupové metódy tak, aby ...
+  - x
+
+- ### demonštrujte prácu s touto triedou
+  - x
+
+- ### najpoužívanejšie skriptovacie jazyky a databázy pre tvorbu www stránok
+  - **skriptovacie jazyky**:
+    - PHP - Hypertext Preprocessor -> serverový skriptovací jazyk na tvorbu dynamických webstránok
+    - JavaScript -> klientský skriptovací jazyk určený hlavne pre tvorbu webstránok
+  - **databázy**:
+    - MySQL
+    - MariaDB
+    - MongoDB
+    - PostgreSQL
+    - MSSQL
+    - OracleDB
+
+- ### LAMP - webserver Linux, Apache, MySQL, PHP
+  - softvérový balík (stack) určený na stavbu webových aplikácií
+  - **L**inux **A**pache **M**ySQL **P**HP:
+    - **Linux**: OS, na ktorom bežia naše LAMP komponenty 
+    - **Apache**: webový server na hosting web stránok
+    - **MySQL**: databázový server 
+    - **PHP**: serverovo-orientovaný jazyk na tvorbu dynamických webstránok   
+
+- ### základné požiadavky pri výbere webhostingu
+  - cena (1 - 30€), 
+  - priestor na disku (10GB SSD - neobmedzený),
+  - bandwidth (neobmedzený), RAM (256MB - 4GB), 
+  - DDOS ochrana (300Gb - 15Tb), 
+  - spoľahlivosť (podpora) 
+
+- ### práca s phpMyAdmin
+  - softvérový nástroj na administráciu MySQL/MariaDB databáz na webe
+  - môžeme vytvárať exporty, importovať dáta, vykonávať SQL príkazy v GUI (INSERT, DELETE, DROP, CREATE TABLE, UPDATE)
+
+- ### CMS systémy (redakčné systémy)
+  - **C**ontent **M**anagement **S**ystem
+  - intuitívny softvér na správu obsahu na webstránke bez profesionálnych znalostí
+  - väčšinou umožňujú správu článkov, zmenu vzhľadu (témy/template) a správu užívateľov 
+  - **najznámejšie redakčné systémy**
+    - WordPress
+    - PHP-Fusion
+    - Drupal
+    - Joomla
+
+- ### význam a použitie skriptovacích jazykov
+  - určené pre automatizáciu rôznych úkonov, ktoré by museli byť v opačnom prípade človekom
+  - skriptovacie jazyky sú interpretované počas behu programu, takže nie sú vopred kompilované, čiže zmeny v programe nemusia byť prekompilované, stačí reštartovať program/script 
+  - Bash, Powershell, Python, JavaScript, Lua, PHP
+
+- ### rozdiel medzi programovacími jazykmi na strane klienta a servera
+  - **strana klienta**:
+    - možnosť automaticky vykonávať inštrukcie na zariadení klienta (napr.: animácie na webstránke)
+  - **strana servera**:
+    - vykonávanie intrukcií na serveri, o ktoré si môže klient požiadať (práca s databázou a riadenie prístupu)
+
+- ### činnosť pripraveného programu v uloženom súbore
+  - x
+
+- ### upravte súbor aaa.php pre nové XML bbb.xml
+  - x
+
+- ### pojem validita HTML kódu
+  - úroveň správnosti a dodržania konvencií HTML kódu pre lepšie spracovanie webovým prehliadačom
+  - dodržanie hierarchie nadpisov, použitie alt atribútov, použitie favicon, zadanie titulov, správne uzatváranie elementov
+
+- ### štruktúru HTML a CSS šablóny v pripravenom súbore
+  - x
+
+- ### práca s príkazmi pre úpravu stránky, textu, obrázkov, odkazov, tabuliek, grafických prvkov
+  - ????
+
+- ### pojmy: doména, URL, webhosting, browser, server, frontend, backend
+  - **doména**:
+    - reťazec znakov (string) ktorý identifikuje origanizáciu na internete
+  - **URL** (Uniform Resource Locator):
+    - webová adresa, refrencia k zdrojom na webe, ktorá špecifikuje jej polohu na internete pomocou reťazca
+    - napr.: `http://www.example.com/questions/3456/my-document?arg=nope#hello`
+      - http -> schéma/protokol
+      - www -> subdoména
+      - example.com -> doména
+      - /questions/3456/my-document/ -> cesta
+      - ?arg=nope -> query
+      - #hello -> fragment
+  - **webhosting**
+    - typ internetovej hostovacej služby na hosting webstránky pre klientov
+  - **browser**
+    - prehliadač, internetový prehliadač (Google Chrome, MS Edge, MS IE, Safari, Opera, Firefox)
+    - umožňuje prehliadať a zobrazovať webstránky
+  - **server**
+    - zariadenie, ktoré poskytuje klientom určité služby (webový server)
+  - **frontend**
+    - klientská časť webstránky/aplikácie, s ktorou má užívateľ nejakú priamu interakciu
+    - HTML, CSS, JavaScript
+  - **backend**
+    - serverová časť webstránky/aplikácie, ktorá zabezpečuje prácu s databázou a riadi prístup a správu údajov
+    - časť s ktorou užívateľ nemá priamu interakciu
+    - PHP, MySQL, Apache
+
+- ### HTML a jeho základnú štruktúru
+  - Hypertext Markup Language
+  - štandardný značkovací jazyk na webové stránky
+  - štruktúra:
+    ```html
+    <html lang="sk">
+      <head>
+        <title>Titulok stránky</title>
+        <link rel="stylesheet" type="text/css" href="style.css"> <!-- import css súboru style.css -->
+      </head>
+      <body>
+        <h1>Nadpis úrovne 1...</h1>
+      </body>
+    </html>
+    ``` 
+
+- ### optimalizáciu pre vyhľadávače (SEO) 
+  - SEO -> Search Engine Optimization
+  - prispôsobenie webstánky pre optimálny výkon zobrazenia vo webových vyhľadávačoch (napr.: Google, Bing, DuckDuckGo)
+  - podľa kvality SEO sa webstránka zobrazuje vyššie v rebríčkoch, zabezpečuje vyššiu relevanciu stránky
+
+- ### základné príkazy HTML
+  - `<html>` - skelet html súboru, vždy obsahuje všetky ostatné tagy
+  - `<head>` - hlava súboru, modifikácie a nastavenia html dokumentu
+  - `<title>` - titulok dokumentu
+  - `<link>` - prepojenie dokumentu s iným (vzdialeným) súborom
+  - `<body>` - telo dokumentu, obsah HTML dokumentu, ktorý tvorí rozhranie pre užívateľa
+  - `<h1> - <h6>` - nadpisy úrovne 1 - 6
+  - `<p>` - paragraf/obyčajný text
+  - `<img>` - pripojenie obrázku do HTML dokumentu
+  - `<a>` - hypertextové prepojenie (externý link)
+
+- ### vytvorenie html súboru z pripraveného súboru
+  - x
 
