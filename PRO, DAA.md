@@ -2,7 +2,7 @@
 attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-16T12:00:53.963Z'
+modified: '2022-05-16T15:45:06.211Z'
 ---
 
 # PRO, DAA
@@ -674,7 +674,39 @@ modified: '2022-05-16T12:00:53.963Z'
   - x
 
 - ### práca s príkazmi pre úpravu stránky, textu, obrázkov, odkazov, tabuliek, grafických prvkov
-  - ????
+  - `<title>Titulok dokumentu</title>` - titulok dokumentu
+  - `<h1>toto je nadpis prvej úrovne<h1>` - nadpisy môžu byť úrovne 1 - 6
+  - `<p>toto je obyčaný text</p>` - paragraf/obyčajný text
+  - `<img src="/cesta/k/obrazku.png" alt="alternativny text pri nespravnom zobrazeni" />` - pripojenie obrázku do HTML dokumentu
+  - `<a href="/cesta/k/dokumentu.html" rel="noreferer">` - hypertextové prepojenie (externý link)
+  - nezoradený zoznam
+    ```html
+    <ul>
+      <li>Vstup v nezoradenom zozname</li>
+      <li>Vstup v nezoradenom zozname 2</li>
+    </ul>
+    ``` 
+  - zoradený zoznam
+    ```html
+    <ol>
+      <li>Vstup v nezoradenom zozname</li>
+      <li>Vstup v nezoradenom zozname 2</li>
+    </ol>
+    ``` 
+  - `<li>vstup</li>` - vstup zoznamu
+  - tabuľky
+      ```html
+      <table>
+        <tr> <!-- prvý riadok v stĺpci (aj hlavička) -->
+          <th>stĺpec v hlavičke</th>
+          <th>stĺpec v hlavičke 2</th>
+        </tr>
+        <tr>
+          <td>stĺpec 1 v druhom riadku</td>
+          <td>stĺpec 2 v druhom riadku</td>
+        </tr>
+      </table>
+      ```
 
 - ### pojmy: doména, URL, webhosting, browser, server, frontend, backend
   - **doména**:
@@ -734,7 +766,137 @@ modified: '2022-05-16T12:00:53.963Z'
   - `<p>` - paragraf/obyčajný text
   - `<img>` - pripojenie obrázku do HTML dokumentu
   - `<a>` - hypertextové prepojenie (externý link)
+  - `<ul>` - nezoradený zoznam
+  - `<ol>` - zoradený zoznam
+  - `<li>` - vstup zoznamu
 
 - ### vytvorenie html súboru z pripraveného súboru
   - x
+
+- ### štruktúra vytvorenej stránky
+  - x
+
+- ### katalógy a vyhľadávače
+  - **internetové katalógy**
+    - weby, kam ľudia registrujú svoje web stránky
+    - web stránky delia do rôznych kategórií 
+  - **vyhľadávače**
+    - web stránka, ktorá prechádza všetky weby a indexuje ich URL adresy, pričom ich zoraďuje podľa relevancie za rôznych kritérií... SEO optimalizácia, návštevnosť, dĺžka pobytu užívateľa na stránke
+    - populárne vyhľadávače: Google, Bing, DuckDuckGo
+
+- ### CSS - kaskádny štýl, jeho vlastnosti a základnú štruktúru
+  - **C**ascading **S**tyle **S**heets
+  - štýlovací jazyk na úpravu dizajnu HTML dokumentov
+  - funguje na príncípe selektorov a vlastností:
+    - **selektory:** tagy (h1), classy (.main__text), id (#start)
+    - základné vlastnosti, ktoré môžeme selektorom priradiť:
+      - `background-color: #fff`
+      - `color: #000`
+      - `text-align: center` 
+      - `font-family: Verdana`
+      - `font-size: 16px`
+      - `padding: 8px`
+      - `margin: 8px`
+    - príklad použitia:
+      ```css
+      h1 {
+        color: #888;
+        font-size: 32px;
+      }
+      ```
+    - vlastnosti sa píšu sekvenčne
+
+- ### štruktúra pripraveného CSS v súbore
+  - x
+
+- ### práca s CSS pre úpravu stránky, textu, odkazov a tabuliek v súbore 
+  - x
+
+- ### pojem databáza a najznámejšie druhy databáz
+  - štruktúrovaný zoznam údajov uložené elektronicky
+  - druhý databáz:
+    - **SQL** (ukladajú údaje do štruktúrovaných tabuliek):
+      - pomocou jazyka SQL vhodnejšie na zložité vzťahy medzi údajmi
+      - **najznámejšie**:
+        - MySQL
+        - MSSQL
+        - PostgreSQL
+        - MariaDB
+    - **NoSQL** (ukládajú údaje do zoznamu dokumentov, ktoré majú vlastný identifikátor):
+      - lepšia horizontálna škálovateľnosť (pre veľmi vysoké objemy dát)
+      - **najznámejšie**:
+        - MongoDB
+        - CouchDB
+        - FaunaDB
+        - Firestore
+    
+- ### dotazovací jazyk SQL a dátové typy
+  - Structured Query Language
+  - štruktúrovaný dotazovací jazyk na správu údajov v SQL databázach
+
+  | typ | popis 
+  | --- | ----- 
+  | VARCHAR(max_veľkosť) | reťazec textu určitej dĺžky
+  | TEXT(max_veľkosť) | reťazec textu o veľkosti maximálne 65535 B
+  | INT(max_veľkosť) | celé číslo
+  | FLOAT(max_veľkosť, počet_desatinných_miest) | desatinné číslo
+  | DATE | dátum
+  | TIMESTAMP | časová pečiatka
+  | BOOLEAN | true/false
+
+- ### základné príkazy jazyka SQL
+  - create database
+  - insert
+  - select
+  - delete
+  - drop 
+
+- ### práca s príkazmi pre vytváranie, mazanie a úpravu databázy a tabuliek
+  - create database - vytvorenie databázy ->
+    ```sql
+    CREATE DATABASE Skola
+    ```
+  - create table - vytvorenie tabuľky ->
+    ```sql 
+    CREATE TABLE Studenti (
+      id INT NOT NULL,
+      meno VARCHAR(32),
+      priezvisko VARCHAR(32),
+      datum_narodenia DATE,
+      PRIMARY KEY (id)
+    )
+    ```
+  - insert - vkladanie údajov -> 
+    ```sql 
+    INSERT INTO <TABULKA> (STLPEC1, STLPEC2, ...) VALUES (HODNOTA_STLPCA1, HODNOTA_STPLCA2) 
+    ```
+  - select - vyberanie údajov -> 
+    ```sql
+    SELECT STLPEC1, STLPEC2 FROM <TABULKA> WHERE STLPEC1="Ahoj"
+    ```
+  - update - úprava údajov ->
+    ```sql
+    UPDATE <TABUĽKA> SET STLPEC1 = "Ahoj", STLPEC2 = 5, ... WHERE STLPEC1 = "Cau"
+    ```
+  - delete - zmazanie vstupu v taubľke ->
+    ```sql
+    DELETE FROM <TABUĽKA> WHERE STLPEC1 = "Ahoj"
+    ```
+  - drop table - zmazanie tabuľky ->
+    ```sql
+    DROP TABLE Studenti
+    ```
+  - drop database - zmazanie databázy ->
+    ```sql
+    DROP DATABASE Skola
+    ```
+
+- ### práca s príkazmi pre získanie dát z databázy, získanie dát z viacerých tabuliek, výber riadkov a stĺpcov v tabuľke, spájanie viacerých tabuliek
+  ```sql
+  SELECT meno, vek 
+  FROM Studenti
+  INNER JOIN Znamky
+  ON Znamky.id = Studenti.id
+  LIMIT 50 OFFSET 20
+  ```
 
