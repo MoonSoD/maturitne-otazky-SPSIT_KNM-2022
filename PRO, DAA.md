@@ -2,7 +2,7 @@
 attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-16T20:26:11.642Z'
+modified: '2022-05-16T20:29:36.793Z'
 ---
 
 # PRO, DAA
@@ -935,13 +935,13 @@ modified: '2022-05-16T20:26:11.642Z'
   - je iteratívna - rozdelená na šprinty (časové úseky s cieľmi, napr. 30 dní)
   - má 3 fázy:
     1) Pre-game
-      - backlog (zadanie cieľov, ktoré chcem dosiahnúť)
-      - zadefinovanie SCRUM tímu - 5-10 členov, vedúci SCRUM master
+        - backlog (zadanie cieľov, ktoré chcem dosiahnúť)
+        - zadefinovanie SCRUM tímu - 5-10 členov, vedúci SCRUM master
     2) Game (vývoj)
-      - vykonanie šprintov
+       - vykonanie šprintov
     3) Post-game
-      - testovanie výsledného produktu
-      - integrácia výsledného produktu
+        - testovanie výsledného produktu
+        - integrácia výsledného produktu
   - vlastnosti:
     - časté nové verzie
     - doladenie programu počas vývoja
