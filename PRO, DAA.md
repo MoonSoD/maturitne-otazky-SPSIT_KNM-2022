@@ -1,8 +1,7 @@
 ---
-attachments: [Clipboard_2022-05-12-19-33-10.png]
 title: 'PRO, DAA'
 created: '2022-05-11T17:08:40.382Z'
-modified: '2022-05-16T20:29:36.793Z'
+modified: '2022-05-17T09:27:20.929Z'
 ---
 
 # PRO, DAA

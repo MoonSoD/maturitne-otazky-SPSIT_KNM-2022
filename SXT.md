@@ -2,7 +2,7 @@
 tags: [Odborné maturity]
 title: SXT
 created: '2022-04-28T13:17:38.585Z'
-modified: '2022-05-12T16:42:49.038Z'
+modified: '2022-05-17T09:24:40.719Z'
 ---
 
 # SXT
@@ -124,13 +124,144 @@ modified: '2022-05-12T16:42:49.038Z'
     - virtualizuje fyzické úložisko pomocou poolov, pool obsahuje disky/slices/súbory
     - podporuje RAID 0;1;5
 
-  - ### práca so záplatami v operačnom systéme Oracle Solaris, princípy, delenie
-    - **typy**:
-      - štandardné
-      - odporúčané a bezpečnostné
-      - firmvérové PROM
-      - skupinové
-    - na patche treba platenú podporu
-    - nakopírujeme do /var/tmp a rozbalíme
-    - príkaz `tmpatch` - správa patchov: aktualizuje systém, stiahne aktualizácie, aplikuje aktualizácie
+- ### práca so záplatami v operačnom systéme Oracle Solaris, princípy, delenie
+  - **typy**:
+    - štandardné
+    - odporúčané a bezpečnostné
+    - firmvérové PROM
+    - skupinové
+  - na patche treba platenú podporu
+  - nakopírujeme do /var/tmp a rozbalíme
+  - príkaz `tmpatch` - správa patchov: aktualizuje systém, stiahne aktualizácie, aplikuje aktualizácie
+
+- ### možnosti zabezpečenia Microsoft Windows Servera
+  - **fyzické**:
+    - fyzický prístup k serveru, politika vo firme, práva na prístup 
+  - **sieťové**:
+    - hrozby: neautorizovaní sieťoví užívatelia, packet sniffing
+  - **vo windowse**:
+    - encrypting FS, bitlocker drive encryption, windows firewall, defender
+  - **autentifikácia**:
+    - overenie identity, účty
+  - **autorizácia**:
+    - overenie práv užívateľa
+  - **zabezpečenie súborov a priečinkov**:
+    - prístupové práva
+  - **audit**:
+    - sledovanie činnosti užívateľov
+
+- ### typy bezpečnostných hrozieb a možnosti ochrany pred nimi v Microsoft Windows Server
+  - hrozby:
+    - vírusy
+    - spam
+    - phishing - presná kópia určitej web stránky, ktorá láka od užívateľov heslá
+    - spoofing - vydávanie sa za inú osobu/užívateľa
+  - **ochrana na strane servera**:
+    - filtrovanie obsahu
+    - filtrovanie príjemcov
+    - blokovanie IP adries
+    - reverse DNS lookup
+    - nástroje Windows servera
+      - MS Exchange Server Edge Transport Server
+      - MS ForeFront Protection for Exchange Server
+  - **ochrana na strane klienta**:
+    - junk mail filter
+    - blokovaný zoznam odosielateľov
+    - antivírusové programy
+    - top level domains - zoznam domén
+
+- ### vlastnosti medzi prístupovými právami súborov, Encrypting File System (EFS)
+a BitLockerom
+  - **Encrypting File System** (EFS):
+    - súčasť Windowsu, ukladá informácie na disk v šifrovanom formáte
+    - vyžaduje užívateľské certifikáty
+  - **BitLocker**:
+    - šifruje všetky dáta na disku, vrátane tabuľky MFT (Master File Table)
+    - šifruje diskové oddiely (aj OS)
+  - **Prístupové práva**
+    - zabezpečujú súbor pred nechceným prístupom na úrovni OS
+
+- ### princíp riadenia prístupu na základe rolí (RBAC) v operačnom systéme Oracle Solaris
+  - root má neobmedzené práva
+  - *Rola* - špeciálna identita na povolenie privilegovaných aplikácií, nie sú preddefinované 
+  - *Profilové shelly* - shelly s prístupom k profilom práv
+  - *Autorizácie* - prístup k obmedzeným funkciám aplikácií
+
+- ### správu systémových služieb (SMF) v operačnom systéme Oracle Solaris
+  - Service Management Facility
+  - možnosť spravovať služby - vypínať/zapínať, zistiť ich stav, spravovanie chýb, logovanie
+  - *Služba*:
+    - zabezpečuje zdroje pre inú službu/aplikáciu, napr. nakonfigurovaná sieťová karta, pripojený FS
+    - identifikátor služby FMRI - svc:/system/filesystem/root:default
+      - *system* - kategória
+      - *filesystem* - názov služby
+      - *root:default* - inštancia
+  - *Daemon svc.startd*
+    - spravuje systémové služby a zabezpečuje, aby systém nabootoval to požadovaného milestonu
+    - zabezpečuje spustenie správnych procesor pre daný milestone
+    - štandardne bootuje do milestonu "all"
+  - *Reštartér inetd*
+    - pre SMF
+    - manažuje stavy služieb a ich chyby
+  - *Repozitár konfiguračných služieb*
+    - zoznam informácií v pamäti a disku
+
+- ### základné verzie operačného systému Microsoft Windows Server a ich vydania
+  | Verzia | Rok vydania |
+  | ------ | ----------- |
+  | Windows 2000 | 2000
+  | Windows Server 2003 | 2003
+  | Windows Server 2003 R2 | 2005
+  | Windows Server 2008 | 2008
+  | Windows Server 2008 R2 | 2009
+  | Windows Server 2012 | 2012
+  | Windows Server 2012 R2 | 2013
+  | Windows Server 2016 | 2016
+  | Windows Server 2019 | 2018
+  | Windows Server 2022 | 2021
+
+- ### pojmy Active Directory, radič domény (Domain Controller), server
+  - **Active Directory**:
+    - databáza platformy WS 2003
+    - obsahuje informácie o objektoch v doméne: tlačiarne, sieťové účty, skupiny, počítače...
+    - poskytuje hierarchickú štruktúru na správu objektov v doméne
+    - môže vykonávať dotazy na objekty v adresári, filtrovať ich 
+  - **Domain Controller**:
+    - počítač, ktorý slúži ako správca domény
+    - autentifikuje prístup užívateľov k zdieľaným prostriedkom
+    - ak klient poýaduje prístup k prostriedkom nejakého servera, ten sa najskôr opýta doménového radiča o autentifikáciu
+    - vo WS je primárny (PDC) a záložný radič (BDC)
+
+- ### monitorovanie a údržbu Microsoft Windows Servera
+  - **monitorovanie**:
+    - *v reálnom čase*
+      - performance monitoring
+      - service-level agreements
+    - *historicky*
+      - event logs
+      - retained performance logs
+    - *nástroje*
+      - event viewer - analýza diania v systéme
+      - network monitor
+      - performance monitor - analýza výkonu systému
+      - Windows System Resource Manager
+      - System Center Operations manager
+  - **údržba**:
+    - *problémy pri štartovaní*
+      - nástroje: Windows Recovery Environment, Last Known Good Configuration, Safe Mode
+    - *zálohovanie dát*
+      - užívateľské dáta
+      - systémové dáta
+    - *vyrovnanie sieťovej záťaže*
+      - network load balancing
+    - *failover clustering*
+      - skupina serverov, ktoré spoločne pracujú na zvýšení dostupnosti služieb
+      - DHCP server, File Server, Print Server, SQL Server, WINS server, DFS Namespace Server
+    - *aktualizácie*
+      - Windows Update
+      - ochrana proti slabým miestam systému
+      - efektívnejšia práca hardvéru
+      - opravy chýb
+      - aktualizácia: jadra OS, ovladačov, aplikácií
+
 
