@@ -1,8 +1,7 @@
 ---
-attachments: [Clipboard_2022-05-17-19-08-38.png]
 title: 'OSY, PAY'
 created: '2022-05-17T09:27:45.458Z'
-modified: '2022-05-17T17:16:19.898Z'
+modified: '2022-05-17T17:38:05.029Z'
 ---
 
 # OSY, PAY
@@ -276,7 +275,70 @@ modified: '2022-05-17T17:16:19.898Z'
       - ALU (Aritmeticko Logická Jednotka)
       - Radič
       - IO zariadenia (Vstupné a výstupné zariadenia)
-![Image]()
+![Image](https://raw.githubusercontent.com/MoonSoD/maturitne-otazky-SPSIT_KNM-2022/main/attachments/neumannova_architektura.jpg)
   - Harvardská
     - fyzicky oddeľuje pamäť programu a dát
     - dvojitá pamäť umožňuje paralelný prístup, čo zrýchľuje spracovanie a vyššiu bezpečnosť
+![Image](https://raw.githubusercontent.com/MoonSoD/maturitne-otazky-SPSIT_KNM-2022/main/attachments/harvardska_architektura.jpg)
+
+- ### čipová sústava základnej dosky osobných počítačov
+  - motherboard chipset
+  - ovláda komunikáciu medzi CPU, RAM, úložiskom a prefifériami
+  - ich parametre definujú maximálnu rýchlosť a počet USB portov
+  - špecifické procesory fungujú na špecifických chipsetoch (Intel CPU nedáme na AMD chipset)
+  - Intel Z690 pre 12th Gen Alder Lake, AMD X570 pre Ryzen 3000
+
+- ### rôzne druhy procesorov a ich vlastnosti
+  - **podľa použitia**:
+    - CPU - v PC
+    - MCU - klávesnice, diaľkové ovládače, vývojové dosky
+    - DSP - spracovanie signálov
+  - **podľa počtu jadier**:
+    - jednojadrové
+    - viacjadrové
+  - **podľa inštrukčnej sady**:
+    - CISC (komplexná sada inštrukcií) - vysoký počet inštrukcií, dlhšie výpočty
+    - RISC (redukovaná sada inštrukcií) - nízky počet inštrukcií, nižšia spotreba pamäte
+    - ZISC - priemyselné procesory
+  - **podľa šírky operanda**:
+    - 4 a 8 bitové - jednoduché (kalkulačky)
+    - 8 a 16 bitové - stredne zložité (PDA, MP3)
+    - 32 a 64 bitové - náročné (PC)
+
+- ### architektúru CISC a RISC a princíp prúdového spracovania informácií
+  - **CISC**:
+    - komplexná inštrukčná sada, procesor vykonáva paralelne viac inštrukcií
+    - vyššie nároky na HW, menej kódu, viac dátových typov
+  - **RISC**:
+    - redukovaná inštrukčná sada, menej inštrukcií
+    - nižie nároky na HW, viac registrov, viac kódu
+  - **Prúdové spracovanie**:
+    - prekrývanie inštrukcií, zreťazené spracovanie
+    - inštrukcia sa vykonáva v sekcii, keď sa dokončí, tak sa do sekcie presunie ďalšia inštrukcia na spracovanie
+
+- ### princípy paralelných systémov (napríklad SISD, MISD, SIMD, MIMD)
+  - SI - 1 tok programu
+  - MI - viac tokov programu
+  - SD - 1 tok dát
+  - MD - viac tokov dát
+  - **ich kombinácie (4)**:
+    - *SISD*: 1 tok programu spracováva 1 tok dát, bez paralelného spracovania
+    - *MISD*: viac programov spracuje 1 tok dát, prúdové spracovanie
+    - *SIMD*: 1 program spracuje viac tokov dát, napr. práca s grafikou
+    - *MIMD*: viac programova spracuje viac tokov dát, paralelné spracovanie
+
+- ### jednotlivé typy správy pamäte
+  - pridelenie celej OP - 1 úlohový systém
+  - pridelenie OP po blokoch - pri spustení aplikácie sa jej pridelí blok OP
+  - presúvanie blokov - efektívne využitie, presun trvá nejaký čas
+  - stránkovanie - pamäť rozdelená na rovnaké časti (stránky), správca ich prideľuje aplikáciam podľa potreby
+  - stránkovanie OP na žiadosť (virtuálna OP) - časť dát aplikácií sa ukladá na HDD, viac pamäte, HDD je pomalší
+
+- ### jednotlivé typy správy procesora
+  - monitorovanie stavu procesora, vyťaženia
+  - prideľovanie a odoberanie strojového času
+  - plánovanie a optimalizácia
+
+- ### jednotlivé typy správy vstupno-výstupných zariadení
+  - x
+
