@@ -1,7 +1,8 @@
 ---
+attachments: [Clipboard_2022-05-17-19-08-38.png]
 title: 'OSY, PAY'
 created: '2022-05-17T09:27:45.458Z'
-modified: '2022-05-17T11:03:08.504Z'
+modified: '2022-05-17T17:16:19.898Z'
 ---
 
 # OSY, PAY
@@ -173,6 +174,109 @@ modified: '2022-05-17T11:03:08.504Z'
 
 - ### princípy jednotlivých konštrukčných typov tlačiarní
   - *Ihličkové*:
-    - 
+    - tlačiaca hlava s ihličkami, ktoré tvoria maticu
+    - ihličky sa vysúvajú elektromagnetmi podľa písmena, ktoré tlačia
+    - pretlačia text cez pásku
+  - *Atramentové*:
+    - tlačiaca hlava s tryskami, cez ktoré strieka atrament
+    - písmena sa tlačia striekaním kvapiek atramentu
+    - farebná tlač sa dosiahne zmiešaním 3 základných farieb (CMY)
+  - *Laserové*:
+    - toner sa naniesie na miesta, ktoré sa nabijú elektrostatickým poľom podľa predlohy strany, ten sa zahreje na vysokú teplotu, napáli a zotrie
+  - *Tepelné*
+    - na papier nanesený atramentom sa prenáša na určité miesta teplo, ten sa zohreje a atrament sa zviditeľní
 
+-  ### vlastnosti a druhy pamätí používaných vo výpočtovej technike
+  - pamäť je zariadenie, ktoré umožňuje zapamätať si informáciu na ľubovoľnú dobu a poskytunúť ju 
+  - **vlastnosti**:
+    - *kapacita*: množstvo údajov, ktoré môžeme do pamäte uložiť
+    - *prístupová doba*: čas, za ktorý pamäť údaje sprostredkuje
+    - *prenosová rýchlosť*: počet prenesených údajov za určitý čas
+    - *MTFB*: poruchovosť, stredná doba medzi poruchami
+    - *spotreba*
+    - *cena*
+  - **delenie pamäti**:
+    - *podľa energetickej závislosti*:
+      - volatilné - údaje sa po odpojení napájania stratia
+      - nevolatilné - údaje sa po odpojení napájania nestratia
+    - *podľa prístupu a možnosti programovania*:
+      - ROM - iba na čítanie, naprogramovaná od výroby
+      - PROM - 1x programovateľná
+      - EPROM - 100x programovateľná, vymaže sa UV svetlom
+      - EEPROM - 1000x programovateľná, vymaže sa elektricky
+      - FLASH - vylepšená EEPROM, podobá sa RAM, cca. 100 000x programovateľná
+      - RWM - volatilná pamäť na čítanie aj zapisovanie
+      - RAM - pamäť s ľubovoľným prístupom
+    - *podľa druhu prístupu*:
+      - maticové - paralelný prístup k údajom podľa riadku a stĺpca
+      - SAM - sériový prístup
+    - *podľa princípu činnosti*:
+      - statické - údaje sa pamätajú po celý čas napájania
+      - dynamické - údaje musíme pravidelne obnoviť
+    - *podľa technológie výroby*:
+      - bipolárne - bipolárne tranzistory, vyššia spotreba, technológia TTL
+      - unipolárne - unipolárne tranzistory, nižšia spotreba, technológia CMOS
+      - feroelektrické - feroelektrické kryštály, drahé
 
+- ### činnosť, časti a charakteristiky pevného disku
+  - zariadenie na trvalé uchovanie dát na základe magnetizmu
+  - geometria disku - počet hláv, sektorov a cylindrov
+  - stopa - jedna kružnica na strane platne
+  - sektor - jedna časť rozdelenej stopy
+  - **časti HDD**:
+    - platne - záznamové médium
+    - pohon - motor, ktorý poháňa platne
+    - hlavička - čítanie, zápis
+  - **vlastnosti disku**:
+    - kapacita
+    - výkon - rýchlosť zápisu/čítania, doba vyhľadávania, doba prístupu
+    - MTFB
+    - cena
+
+- ### optický záznam dát a porovnajte jednotlivé optické disky (CD, DVD, BD)
+  - údaje sa zapisujú vo forme výstupov (log. 1) alebo priehlbín (log. 0) na špeciálny materiál disku
+  - čítanie pomocou laserového lúča
+    - CD: 700MB, 
+    - DVD: 4-8GB 
+    - BD: 25-50GB
+
+- ### jednotlivé typy výpočtového modelu
+  - vzťah všetkých zložiek, ktoré sú v PC sieťach (užívatelia, hardvér, softvér, dáta)
+  - **typy**:
+    - *dávkové spracovanie*
+      - najstarší výpočtový model
+      - k PC mala kedysi prístup len špeciálizovaná obsluha, záujemcovia o výpočet dávali požiadavky na dierne štítky a po čase si mohli príst po výsledok 
+      - v dnešne dobe sa používa pri RJE (Remote Job Entry) kde sa dávka pripraví na PC a pošle sa na spracovanie SuperPC
+    - *host/terminál*
+      - vzdialené ovládanie hostiteľského PC pomocou terminálu (textového/grafického) 
+      - umožňuje používanie periférií
+      - väčšinou viac terminálov pripojených k jednému hostiteľovi
+    - *samostatné počítače* (sieťovo neprepojené)
+      - úplne decentralizované
+    - *rovný s rovným* (peer-to-peer)
+      - všetky uzly v sieti sú si hierarchicky rovnocenné
+      - každý počítač môže poskytovať svoje prostriedky a služby iným uzlom
+    - *klient/server*
+      - server - poskytovateľ služieb
+      - klient - konzument služieb
+      - služby: diskový server (vyhradený disk), súborový server (vyhradená kapacita), tlačový server, aplikačný server (webový, mailový), databázový server
+    - *distribuovaný systém*
+      - rozdelenie náročného výpočtového problému medzi viac uzlov
+    - *cloud computing*
+      - na serveri v dátovom centre je softvér, a len ten zákazník používa
+      - softvér spravuje poskytovateľ
+    - *internet vecí* (IoT)
+      - "veci" sledujú svoje okolie a komunikujú s inými "vecami", so serverom alebo s ľuďmi
+      - napr.: snímač odtlačku prsta nenájde zhodu a neotvorí vám bránu
+
+- ### von Neumanovú a Harvardskú architektúru počítačov
+  - von Neumannová
+    - skladá sa:
+      - OP (Operačná Pamäť)
+      - ALU (Aritmeticko Logická Jednotka)
+      - Radič
+      - IO zariadenia (Vstupné a výstupné zariadenia)
+![Image]()
+  - Harvardská
+    - fyzicky oddeľuje pamäť programu a dát
+    - dvojitá pamäť umožňuje paralelný prístup, čo zrýchľuje spracovanie a vyššiu bezpečnosť
