@@ -1,7 +1,7 @@
 ---
 title: 'SIE, CIT, IVI'
 created: '2022-05-18T07:06:16.598Z'
-modified: '2022-05-18T17:53:30.355Z'
+modified: '2022-05-18T21:41:29.925Z'
 ---
 
 # SIE, CIT, IVI
@@ -463,7 +463,7 @@ modified: '2022-05-18T17:53:30.355Z'
     - auto konfigurácia
     - end-to-end šifrovanie
 
-- ### pojmy MAC adresa, IP adresa, sieťová adresa, broadcastová (všeobecná) adresa, maska 
+- ### pojmy MAC adresa, IP adresa, sieťová adresa, broadcastová (všeobecná) adresa, maska podsiete, prefix siete
   - **MAC adresa** (Media Access Control):
     - naviazaná k fyzickému NIC rozhraniu zariadenia
     - fyzická adresa zariadenia
@@ -474,4 +474,120 @@ modified: '2022-05-18T17:53:30.355Z'
   - **Sieťová adresa**:
     - verejná IP adresa uzla v sieti
   - **Broadcastová (všeobecná) adresa**:
-    - ...
+    - adresa, ktorá sa prenáša všetkým zariadeniam pripojeným do siete
+  - **maska podsiete**
+    - 32 bitové číslo, ktoré hovorí ako je rozdelená IPv4 adresa na časť siete a hostiteľa
+    - delí sieť do podsietí
+  - **prefix siete**
+    - agregácia IP adresy (max 32)
+    - 192.63.120.1/**17** - prvých 17 bitov adresy je agregovaných, zostávajúcich 15 bitov do 32 môže byť rozdelených do podsietí alebo pridelených zariadeniam 
+
+- ### pojmy privátny adresný priestor, unicast, multicat, broadcast
+  - **privátny adresný priestor**
+    - adresy, ktoré sú pridelené v rámci lokánej siete a nesmerujú do internetu
+    - 192.168.0.0/24
+  - **unicast**
+    - odosielanie packetov 1 cieľu
+  - **multicast**
+    - odosielanie packetov viacerým cieľom súčasne
+  - **broadcast**
+    - odosielanie packetov všetkým klientom/cieľom súčasne
+
+- ### výpočty s IPv4 adresami – výpočet sieťovej adresy z hostiteľskej, výpočet hostiteľov v sieti,
+prevod medzi maskou siete a prefixom
+  ```c
+  17.170.0.0/16 
+
+  0001 0001 . 1010 1010 . 0000 0000 . 0000 0000 // 17.170.0.0 v binárnej
+  1111 1111 . 1111 1111 . 0000 0000 . 0000 0000 // prefix 16, takže 16x1 za sebou, ostatné 0 do konca adresy
+  
+  0001 0001 . 1010 1010 . 0000 0000 . 0000 0000 // logický súčin 17.170.0.0 a prefixu 16
+
+  17.170.0.0 // adresa siete -> prepočítaný logický súčin do decimálnej
+  17.170.0.1 // 1. hostiteľ, 1. použiteľná adresa, vždy +1 bit
+  ```
+
+- ### mechanizmus agregácie (spájania) sietí
+  - niekoľko užívateľov ISP v danom okamiho zdieľa vyhradenú prenosovú rýchlosť
+  - vyjadruje sa ako pomer, minimálny podiel rýchlosti a maximálny podiel rýchlosti
+    - agregácia 1:10 pri pripojení 100mbps je teda minimálne 10mbps až 100mbps
+
+- ### mechanizmus vytvárania podsietí
+  - podsiete vytváramé pre maximálne využitie adresného rozsahu a použitie viacerých sieťovych másk
+  - zabraňujeme plýtvaniu adresami
+  - napr. rozdelenie siete podľa triedy X s 32 užívateľmi
+
+- ### smerovač, jeho časti, funkcie a vlastnosti
+  - sieťové zariadenie, ktoré smeruje premávku medzi sieťami
+  - pracuje na 3. vrstve 
+  - používa sa v LAN a WAN sieťach
+  - **časti**:
+    - CPU
+    - RAM - obsahuje bežiacu konfiguráciu (running-config)
+    - ROM - OS 
+    - NVRAM - štartovacia konfigurácia (startup-config)
+    - Porty
+      - Ethernet
+      - Serial
+      - DSL
+      - DC napájanie 
+
+- ### operačný systém IOS smerovača a jeho operačné módy
+  - OS používaný na Cisco zariadeniach (smerovače, prepínače)
+  - obsahuje GUI a CLI
+  - **operačné módy**:
+    - užívateľský
+    - privilegovaný mód
+    - konfiguračný mód
+      - konfigurácia rozhrania
+      - konfigurácia zariadenia
+
+- ### základná konfigurácia smerovača
+  ```js
+   conf t
+   hostname MENO
+   banner motd # LEN PRE VYVOLENYCH
+   
+   //zabezpečenie smerovača 
+   enable password
+   enable secret
+   line console 0
+   password c1sc0
+   login
+
+   //konfigurácia ethernetu
+   interface fa0/1
+   description LAN1
+   ip address 172.16.255.1 255.255.255.128
+   no shutdown
+   exit
+  ```
+
+- ### pojmy smerovanie, statické smerovanie, dynamické smerovanie, smerovacia tabuľka, metrika 
+  - **smerovanie**:
+    - výber správnej cesty packetu cez 1 alebo viac sietí
+  - **statické smerovanie**:
+    - manuálne nakonfigurované cesty smerovania packetov zariadení
+    - nízka náročnosť na smerovač
+    - úplná kontrola nad smerovaním
+    - vhodné pre malé siete
+  - **dynamické smerovanie**:
+    - cesty smerovania vyberá router podľa smerovacieho algoritmu v reálnom čase
+    - protokoly OSPF, RIP, EIGRP
+    - vyššia náročnosť na smerovač
+    - menšia kontrola nad smerovaním
+    - vhodné pre väčšie siete
+  - **smerovacia tabuľka**:
+    - tabuľka, ktorá uchováva ciele v sieti a ich metriky
+    - obsahuje informácie o topológii
+  - **metrika**
+    - výpočet hodnotu úkonu na zariadení
+    - hodnota cesty medzi smerovačom a cieľovou sieťou
+    - packet sa posiela vždy najlacnejšou cestou (najmenšou metrikou)
+
+- ### trasy, administratívna vzdialenosť
+  - dôveryhodnosť zdroja smerovania, protokolu
+
+- ### predložený výpis smerovacej tabuľky - opis
+
+
