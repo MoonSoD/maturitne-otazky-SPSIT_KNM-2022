@@ -1,7 +1,7 @@
 ---
 title: 'SIE, CIT, IVI'
 created: '2022-05-18T07:06:16.598Z'
-modified: '2022-05-18T13:35:42.101Z'
+modified: '2022-05-18T17:53:30.355Z'
 ---
 
 # SIE, CIT, IVI
@@ -220,6 +220,10 @@ modified: '2022-05-18T13:35:42.101Z'
     - efektívnosť napájania
     - veľkosť
     - frekvencia aktualizácií
+    - cena
+    - PoE
+    - spoľahlivosť
+    - fixné/modulárne
 
 - ### proces prepínania rámcov v ethernetovom prepínači
   - prepínač v pamäti vytvorí tabuľku MAC adries všetkých zariadení na portoch
@@ -258,5 +262,216 @@ modified: '2022-05-18T13:35:42.101Z'
   - STP zabraňuje tvorbe slučiek pomocou Spanning Tree Algoritmu
   - prepínače si vymieňajú BDPU rámce s cenami trás a prioritami, podľa týchto informácií STP zablokuje redundantné linky, ktoré by spôsobili slučku
   - **verzie**:
-    - 
+    - *Spanning Tree Protocol (STP)*
+    - *Per-VLAN Spanning Tree (PVST+)* - STP pre každú VLAN
+    - *Rapid Spanning Tree Protocol (RSTP)* - STP s rýchlejšou konvergenciou
+    - *Rapid Per-VLAN Spanning Tree (Rapid PVST+)* - STP pre každú VLAN s rýchlejšou konvergenciou
+    - *Multiple Spanning Tree Protocol (MSTP)* - viac VLAN do jedného STP
    
+- ### princíp činnosti protokolov FHRP v ethernetových prepínačoch
+  - First Hop Redundancy Protocol
+  - protokol na ochranu default gateway
+  - umožňuje 2 alebo viacerým smerovačom zastúpiť smerovač, ktorý vypadne
+  - zástupný smerovač nahradí vypadnutý smerovač do pár sekúnd 
+
+- ### počítačové siete podľa rôznych kritérií
+  - **podľa veľkosti**:
+    - *PAN* - Personal Area Network; malá osobná sieť (notebook + mobil)
+    - *LAN* - Local Area Network; prepojenie zariadení v rámci 1 budovy (PC + PC + mobil)
+    - *MAN* - Metropolitan Area Network; metropolitná sieť, prepája lokálne siete (v meste)
+    - *WAN* - Wide Area Network; spája LAN a MAN v rámci krajín/kontinentu (firemné pobočky)
+  - **podľa funkčného stavu**:
+    - *Klient - Server* - server poskytuje rôzne služby klientom
+    - *Peer-To-Peer* - rovnocenné prepojenie zariadení bez správcu
+  - **podľa topológie**:
+    - *zbernicová* - zariadenia pozdĺžne spojené
+    - *hviezdicová* - zariadenia pripojenie k jednému centrálnemu bodu
+    - *mrežová* - zariadenia prepojené medzi sebou
+
+- ### princípy činnosti sieťových zariadení
+  - *repeater* (opakovač) - obnovuje signál, ktorý po dlhšom úseku degraduje, stráca ale pôvodné charakteristiky (silu a tvar)
+  - *hub* (rozbočovač) - spája niekoľko častí siete do jedného segmentu
+  - *bridge* (most) - spája 2 časti siete
+  - *switch* (prepínač) - spája 2 alebo viac zariadení vrámci 1 alebo viacerých segmentov (logicky aj fyzicky)
+  - *router* (smerovač) - smeruje premávku do iného segmentu siete rovnakého typu
+  - *gateway* (brána) - sprostredkuje komunikáciu rôznych typov siete
+
+- ### jednotlivé druhy sieťových médií a ich vlastnosti
+  - **krútený pár**
+    - používané v telekomunikáciach a môžu spájať ethernetové siete
+    - pár káblov, ktoré prenášajú dáta
+    - káble majú v okolí malé magnetické pole
+    - prenosová diaľka do 300m
+    - rýchlosť do 1gbps
+    - druhy:
+      - *UTP* - netienený
+      - *STP* - tienený
+  - **koaxiálny kábel**:
+    - dutý vodič s vnútornými káblami z 2 vodivých materiálov
+    - má 2 vrstvy izolácie - gumená izolácia a metalická fólia (ochrana pred vonkajšími signálmi)
+    - lacnejší ako UTP, väčšia prenosová diaľka (500m) a nižšia rýchlosť (10 - 100mbps)
+  - **optické vlákno**:
+    - vlákna, ktoré prenášajú signál svetlom
+    - odolné proti vonkajším signálom
+    - prenosová diaľka až do 100km
+    - drahé
+
+- ### možnosti prístupu k LAN prepínaču
+  - ssh, telnet (pre vzdialené pripojenie musíme mať IP, teda SVI), konzolový port
+
+- ### virtuálne LAN siete (VLAN), ich princíp, výhody, módy portov access a trunk
+  - logické podsiete, ktoré sú spojené medzi rôznymi fyzickými LAN sieťami a tvoria jednu skupinu
+  - **access mode**:
+    - používa sa pri 1 VLAN
+    - väčšinou prístup PC a koncového zariadenia (tlačiarne) cez prepínač
+    - nižší bandwidth
+  - **trunk mode**:
+    - prenáša údaje pri 1 alebo viacerých VLAN na rovnakej fyzickej linke
+    - switch-switch; switch-router; switch-server 
+    - vyšší bandwidth
+
+- ### rôzne typy smerovania medzi VLAN sieťami
+  - **legacy routing**:
+    - prepojenie VLAN switchu a smerovača toľkými káblami, koľko máme VLAN
+  - **router on a stick**:
+    - na rozhraní vytvoríme podrozhrania, pre každú VLAN vytvoríme SVI
+  - **multilayer switch**:
+    - prepínanie na 3. vrstve
+    - podporuje SVI
+    - pokiaľ switch dostane L2 packet, switch ho presmeruje
+
+- ### smerovací protokol EIGRP, vlastnosti, metrika, algoritmus DUAL, možnosti konfigurácie
+  - pokročilý, Cisco proprietárny protokol smerového vektora
+  - **algoritmus DUAL** (bezslučkový)
+    - Diffusing Update Alrogithm
+    - vyberá najlepšiu trasu medzi sieťami
+  - **metrika** 
+    - bandwidth, delay, reliability, load
+  - používa RTP - spoľahlivý transportný protokol, ktorý potvrdzuje niektoré typy packetov
+  - obmedzuje zbytočné posielanie aktualizácií
+  - rozkladanie záťaže
+  - autentifikácia EQUAL
+  - packety: hello, ACK, update, query, reply
+  
+- ### smerovací protokol OSPF, vlastnosti, metrika, možnosti konfigurácie
+  - smerovací protokol stavu linky
+  - používa SPF algoritmus 
+  - autentifikácia IPsec
+  - **metrika**:
+    - 10^8/interface bandwidth
+  - router ID je 32 bitové číslo (1.1.1.1)
+  - *vlastnosti*:
+    - beztriedy
+    - efektívny
+    - škálovateľný
+    - bezpečný (šifruje)
+  - **OSPFv2**
+    - IPv4 adresy
+  - **OSPFv3**
+    - IPv6 adresy
+
+- ### single-area a multi-area smerovanie pomocou OSPF, typy OSPF smerovačov
+  - **single-area**:
+    - všetky smerovače v 1 (backbone) oblasti
+    - vhodné pre menšie siete
+  - **multi-area**:
+    - 2 úrovňová hierarchia, ktorá má viac oblastí pripojených k oblasti 0 (backbone)
+    - vhodné pre väčšie siete
+    - oblasti nie sú na sebe závislé 
+  - **typy OSPF smerovačov**:
+    - interné smerovače 
+      - v rovnakej oblasti
+    - area border
+      - medzi OSPF a non-OSPF sieťami
+    - autonomous systems boundary
+    - backbone
+      - v oblasti 0 (backbone)
+
+- ### sieťové vrstvové modely TCP/IP a OSI
+  - **OSI model**:
+    - referenčný model, ktorý sa používa na návrhy sietí
+    - nedefinuje žiadne protokoly, ale je podkladom pre komunikáciu
+    - *7 vrstiev*:
+      1) aplikačná - užívateľké rozhrania, dáta
+      2) prezentačná - prezentácia dát zo služieb aplikačnej vrstvy
+      3) relačná - spojenie medzi aplikáciami, zabezpečenie, prihlásenie
+      4) transportná - príprava dát na prenos, tvorba menších balíkov na prenos
+      5) sieťová - pracuje s IP adresami, vyhľadávanie najlepšej trasy
+      6) linková - riadi prístup jednotlivých staníc k zdieľanému médiu, vymieňa dáta medzi susednými zariadeniami
+      7) fyzická - popisuje elektrické a optické signály, komunikácia, kabeláž
+    - pri odosielaní sa dáta posielajú po vrstvách zhora nadol
+    - pri prijímaní sa dáta posielajú po vrstvách zdola nahor
+
+  - **TCP/IP model**:
+    - skupina protokolov, ktoré sa používajú pri komunikácii
+    - *4 vrstvy*:
+      1) aplikačná - rovnako ako OSI model + prezentačná a relačná
+      2) transportná - rovnako ako OSI model
+      3) internetová - rovnako ako sieťová vrstva OSI modelu
+      4) priamy prístup k médiu - rovnako ako fyzická a linková vrstva OSI modelu
+
+- ### aplikačné protokoly: HTTP, HTTPS, protokoly pre e-mail, DNS, DHCP, TELNET, SSH
+  - **HTTP** (Hyper Text Transfer Protocol) /port 80/: 
+    - protokol na prenos hypertextových dokumentov (HTML) medzi serverom a klientom
+  - **HTTPS** (Hyper Text Transfer Protocol Secure) /443/:
+    - HTTP protokol, ktorý navyše šifruje prenos dát
+  - *protokoly pre e-mail*:
+    - **SMTP** (Simple Mail Transfer Protocol) /465/:
+      - prenos emailov z lokálneho klienta na adresu príjemcu 
+    - **POP3** (Port Office Protocol version 3) /995/:
+      - jednosmerný protokol na prijímanie emailov
+      - stiahne kópie emalov zo servera na lokálne zariadenie
+    - **IMAP** (Internet MEssage Access Protocol) /993/:
+      - dvojsmerný protokol na prijímanie emailov
+      - oproti POP3 stiahne len hlavičku mailu, obsah e-mailu číta zo servera
+  - **DNS** (Domain Name System):
+    - menný systém na internete, menný server prekladá domény na IP adresy 
+    - najznámejší od Google 8.8.4.4 a 8.8.8.8, Cloudflare 1.1.1.1
+  - **DHCP** (Dynamic Host Configuration Protocol):
+    - protokol na dynamické priraďovanie IP adries zariadeniam, ktoré si ju vyžiadajú
+    - do tabuľky si ukladá zabraté IP adresy
+  - **TELNET** /23/: 
+    - aplikačný protokol používaný na prenos interaktívnej textovej komunikácie cez virtuálny terminál
+    - nešifrovaná komunikácia
+  - **SSH** (Secure Shell) /22/:
+    - protokol na vzdialenú administráciu serverov cez internet
+    - náhrada Telnetu, SSH je šifrovaný
+
+- ### transportné protokoly TCP a UDP, ich vlastnosti, použitie, porty
+  - **TCP** (Transmission Control Protocol):
+    - vytvorí pripojenie medzi 2 zariadeniami a potom začne prenos
+    - pomalší, ale spoľahlivý prenos
+    - použitie: FTP, prehliadanie webu, e-maily
+    - unicast
+  - **UDP** (User Datagram Protocol)
+    - pošle údaje zariadeniu, ktoré ich prijíma, ak sa však po ceste stratia a nedostane ich, nerieši, nevytvára pripojenie
+    - rýchlejší, ale negarantuje nám spoľahlivý prenos (best effort)
+    - použitie: Priame video prenosy, Online hry, VoIP telekomunikácia
+    - unicast, multicast, broadcast
+
+- ### sieťové protokoly IPv4 a IPv6, ich vlastnosti
+  - **IPv4**:
+    - 32-bit IP adresy
+    - 4,3 miliárd IP adries
+    - oddelené desatinnou bodkou (192.168.0.1)
+    - rozdelené na 4 oktety: 1.2.3.4
+    - DHCP/statické priradenie
+  - **IPv6**:
+    - 128-bit IP adresy
+    - 7,9*10^28 IP adries
+    - oddelené hexadecimálne
+    - auto konfigurácia
+    - end-to-end šifrovanie
+
+- ### pojmy MAC adresa, IP adresa, sieťová adresa, broadcastová (všeobecná) adresa, maska 
+  - **MAC adresa** (Media Access Control):
+    - naviazaná k fyzickému NIC rozhraniu zariadenia
+    - fyzická adresa zariadenia
+    - 48-bit číslo
+    - 12 miestne hex
+  - **IP adresa**
+    - logický číselný identifikátor uzla v sieti, ktorý komunikuje s ostatnými pomocou IP protokolu
+  - **Sieťová adresa**:
+    - verejná IP adresa uzla v sieti
+  - **Broadcastová (všeobecná) adresa**:
+    - ...
