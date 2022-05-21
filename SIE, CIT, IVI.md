@@ -1,7 +1,7 @@
 ---
 title: 'SIE, CIT, IVI'
 created: '2022-05-18T07:06:16.598Z'
-modified: '2022-05-18T21:41:29.925Z'
+modified: '2022-05-21T19:29:47.465Z'
 ---
 
 # SIE, CIT, IVI
@@ -589,5 +589,102 @@ prevod medzi maskou siete a prefixom
   - dôveryhodnosť zdroja smerovania, protokolu
 
 - ### predložený výpis smerovacej tabuľky - opis
+  - zoznam v podobe tabuľky, kde máme zobrazené zdroje, cieľové IP adresy a ich rozhrania
+  - `show ip route`
+  ![Image](attachments/routing_table.jpg)
 
+- ### konfigurácia statického smerovania
+  ![Image](attachments/static_routing.png)
+  ```js
+  //R1
+  enable
+  conf t
 
+  int s/0/0
+  ip address 20.0.0.1 255.0.0.0
+  no shutdown
+
+  int fa0/0
+  ip address 10.0.0.1 255.0.0.0
+  no shutdown
+
+  //R2
+  enable
+  conf t
+
+  int s/0/0
+  ip address 20.0.0.2 255.0.0.0
+  no shutdown
+
+  int fa0/0
+  ip address 30.0.0.1 255.0.0.0
+  no shutdown
+  ```
+
+- ### statické a dynamické smerovanie - porovnanie
+  - **statické smerovanie**
+    - nastavujeme manuálne pridávaním ip adries "na tvrdo"
+    - rýchle, bezpečnejšie, vhodné pre menšie siete, predvídavé
+  - **dynamické smerovanie**
+    - automatické smerovanie pomocou smerovacieho protokolu 
+    - pomalšie, menej bezpečné, efektívne pre väčšie siete
+
+- ### dynamické smerovacie protokoly podľa rôznych hľadísk
+  - **vnútorné** (vo vnútri autonómneho systému):
+    - *distance vector protocol* (RIP, EIGRP):
+      - vymieňajú si smerovacie aktualizácie
+    - *link-state protocol* (OSPF):
+      - pozná stav každej linky
+  - **vonkajšie** (medzi autonómnymi systémami):
+    - path-vector protocol (BGP)
+  - **classful**:
+    - neposielajú susedovi masku podsiete
+  - **classless**:
+    - posielajú susedovi aj masku podsiete
+    - RIPv2, EIGRP, OSPF
+
+- ### dynamický smerovací protokol RIP
+  - Routing Information Protocol
+  - dynamický smerovací protokol, ktorý používa počet hops ako metriku na získanie najlepšej trasy medzi cieľami v sieti
+  - protokol distance-vector
+  - **hops**: počet smerovačov cez ktoré prejde packet pred dosiahnutím cieľa
+  - **verzie**:
+    - *RIPv1*: 
+      - posiela aktualizácie smerovaní ako broadcast (všetkým)
+      - classful
+      - nepodporuje autentifikáciu
+    - *RIPv2*:
+      - posiela aktualizácie smerovaní ako multicast (len vybraným zariadeniam)
+      - classless
+      - podporuje autentifikáciu
+    - *RIPng*:
+      - posiela aktualizácie smerovaní ako multicast 
+      - classless
+      - podpora IPv6
+
+- ### architektúra Internetu vecí a pojem IoT obecne
+  - **architektúra**:
+    - *Data management layer*
+      - zbieranie údajov od používateľov IoT
+    - *Application layer*
+      - distribúcia prostriedkov medzi používateľov IoT
+    - *Network layer*
+      - siete na prenos prostriedkov IoT
+    - *Perception layer*
+      - zobrazenie prostriedkov IoT
+
+- ### komponenty Internetu vecí
+  - **senzory a koncové zariadenia**
+    - snímanie poznatkov
+  - **sieť**
+    - prenos poznatkov
+  - **zabezpečenie**
+    - zabezpečenie prenosu poznatkov
+  - **výpočtový systém**
+    - spracovanie poznatkov
+  - **technologické štandardy**
+    - Wi-Fi, HTTP, Bluetooth
+  - **inteligentné poznatky a akcie**
+    - umelá inteligencia, výber akcií na základe získaných poznatkov
+    
+      
